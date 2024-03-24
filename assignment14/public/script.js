@@ -1,5 +1,5 @@
 async function showCrafts() {
-    let response = await fetch("http://localhost:3000/api/crafts");
+    let response = await fetch("https://node-crafts-14.onrender.com//api/crafts");
     let craftJSON = await response.json();
     let mainContent = document.getElementById("content");
     let iteration = 1;
@@ -25,7 +25,7 @@ async function showCrafts() {
         mainContent.append(modal);
 
         let img = document.createElement("img");
-        img.src = "http://localhost:3000/images/" + craft.image;
+        img.src = "https://node-crafts-14.onrender.com/images/" + craft.image;
         console.log(img.src);
         
 
@@ -33,7 +33,7 @@ async function showCrafts() {
         const rowSection = document.createElement("section");
         rowSection.classList.add("row");
         let modalImg = document.createElement("img");
-        modalImg.src = "http://localhost:3000/images/" + craft.image;
+        modalImg.src = "https://node-crafts-14.onrender.com/images/" + craft.image;
         modalImg.style.marginRight = "20px";
         rowSection.append(modalImg);
 
