@@ -25,7 +25,7 @@ async function showCrafts() {
         mainContent.append(modal);
 
         let img = document.createElement("img");
-        img.src = "http://localhost:3000/images/" + craft.image;
+        img.src = "http://smitchristian.github.io/node-crafts/assignment14/public/images/" + craft.image;
         
 
         /* Populating Modal */
