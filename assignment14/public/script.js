@@ -25,14 +25,14 @@ async function showCrafts() {
         mainContent.append(modal);
 
         let img = document.createElement("img");
-        img.src = "http://smitchristian.github.io/node-crafts/assignment14/public/images/" + craft.image;
+        img.src = "images/" + craft.image;
         
 
         /* Populating Modal */
         const rowSection = document.createElement("section");
         rowSection.classList.add("row");
         let modalImg = document.createElement("img");
-        modalImg.src = "http://smitchristian.github.io/node-crafts/assignment14/public/images/" + craft.image;
+        modalImg.src = "images/" + craft.image;
         modalImg.style.marginRight = "20px";
         rowSection.append(modalImg);
 
