@@ -32,7 +32,7 @@ async function showCrafts() {
         const rowSection = document.createElement("section");
         rowSection.classList.add("row");
         let modalImg = document.createElement("img");
-        modalImg.src = "http://localhost:3000/images/" + craft.image;
+        modalImg.src = "http://smitchristian.github.io/node-crafts/assignment14/public/images/" + craft.image;
         modalImg.style.marginRight = "20px";
         rowSection.append(modalImg);
 
