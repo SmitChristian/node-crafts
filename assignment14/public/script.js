@@ -1,5 +1,5 @@
 async function showCrafts() {
-    let response = await fetch("http://node-crafts-14.onrender.com/api/crafts", {
+    let response = await fetch("https://node-crafts-14.onrender.com/api/crafts", {
         mode: "no-cors"
     });
     let craftJSON = await response.json();
