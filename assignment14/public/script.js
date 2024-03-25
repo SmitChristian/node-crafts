@@ -1,5 +1,5 @@
 async function showCrafts() {
-    let response = await fetch("node-crafts-14.onrender.com/api/crafts");
+    let response = await fetch("http://localhost:3000/api/crafts");
     let craftJSON = await response.json();
     let mainContent = document.getElementById("content");
     let iteration = 1;
