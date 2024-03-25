@@ -35,7 +35,7 @@ async function showCrafts() {
         const rowSection = document.createElement("section");
         rowSection.classList.add("row");
         let modalImg = document.createElement("img");
-        modalImg.src = "node-crafts-14.onrender.com/images/" + craft.image;
+        modalImg.src = "https://node-crafts-14.onrender.com/images/" + craft.image;
         modalImg.style.marginRight = "20px";
         rowSection.append(modalImg);
 
