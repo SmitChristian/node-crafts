@@ -1,6 +1,6 @@
 async function showCrafts() {
     let response = await fetch("http://localhost:3000/api/crafts", {
-        mode: "no-cors",
+        mode: "no-cors"
     });
     let craftJSON = await response.json();
     let mainContent = document.getElementById("content");
