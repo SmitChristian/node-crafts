@@ -27,7 +27,7 @@ async function showCrafts() {
         mainContent.append(modal);
 
         let img = document.createElement("img");
-        img.src = "node-crafts-14.onrender.com/images/" + craft.image;
+        img.src = "https://node-crafts-14.onrender.com/images/" + craft.image;
         console.log(img.src);
         
 
