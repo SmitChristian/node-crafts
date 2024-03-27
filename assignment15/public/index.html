@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+        <script src="script.js"></script>
+
+        <div class="row">
+            <h1>Buy and Sell Crafts</h1>
+            <h1 id="add-craft" style="cursor:pointer" onclick="openChangeModal()">&#10010;</h1>
+        </div>
+    </head>
+    <body>
+        <main id="content">
+            <div id="craft-list" class="row">
+                <div id="col-1" class="column"></div>
+                <div id="col-2" class="column"></div>
+                <div id="col-3" class="column"></div>
+                <div id="col-4" class="column"></div>
+            </div>
+            
+            <div id="change-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeChangeModal()">&times;</span>
+                    <form id="add-content" class="row" method="post">
+                        <input type="hidden" name="_id" value="-1">
+                        <section id="add_image" class="column">
+                            <img src="images/200x300.webp">
+                            <label for="file_picker" class="blue_label"">Select An Image</label>
+                            <input type="file" id="file_picker" style="visibility: hidden;">
+                        </section>
+                        <section id="add_extras" class="column" style="max-width: 100%;">
+                            <h3>Make Changes to Your Crafts</h3>
+                            <div class="inputter">
+                                <label for="name" class="labels">Name:</label>
+                                <input type="text" id="name">
+                            </div>
+                            <div class="inputter">
+                                <label for="description" class="labels">Description:</label>
+                                <textarea id="description"></textarea>
+                            </div>
+                            <div class="inputter row">
+                                <label for="supply-text" class="labels">Supplies:</label>
+                                <div id="supply-text" class="row">
+                                </div>
+                                <label for="add_button" class="blue_label">Add Supply</label>
+                                <input type="button" id="add_button" style="visibility: hidden;">
+                            </div>
+                            <div id="save-cancel" class="inputter row">
+                                <div>
+                                    <label for="cancel-button" class="labels blue_label">Cancel</label>
+                                    <input type="button" id="cancel-button" style="visibility: hidden;">
+                                </div>
+                                <div>
+                                    <label for="save-button" class="labels blue_label">Save</label>
+                                    <button type="submit" id="save-button" style="visibility: hidden;">
+                                </div>
+                            </div>
+                        </section>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
