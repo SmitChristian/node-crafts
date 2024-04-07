@@ -25,19 +25,18 @@
                     <form id="add-content" class="row" method="post">
                         <input type="hidden" name="_id" value="-1">
                         <section id="add_image" class="column">
-                            <img src="images/200x300.webp">
-                            <label for="file_picker" class="blue_label"">Select An Image</label>
-                            <input type="file" id="file_picker" style="visibility: hidden;">
+                            <img id="modal-image">
+                            <input type="file" id="file_picker" onchange="changeModalImage()" required>
                         </section>
                         <section id="add_extras" class="column" style="max-width: 100%;">
                             <h3>Make Changes to Your Crafts</h3>
                             <div class="inputter">
                                 <label for="name" class="labels">Name:</label>
-                                <input type="text" id="name">
+                                <input type="text" id="name" required>
                             </div>
                             <div class="inputter">
                                 <label for="description" class="labels">Description:</label>
-                                <textarea id="description"></textarea>
+                                <textarea id="description" required></textarea>
                             </div>
                             <div class="inputter row">
                                 <label for="supply-text" class="labels">Supplies:</label>

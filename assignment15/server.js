@@ -3,9 +3,24 @@ const app = express();
 const Joi = require("joi");
 const multer = require("multer");
 app.use(express.static("public"));
+app.use("/uploads", express.static("uploads"));
+app.use(express.json());
+const cors = require("cors");
+app.use(cors());
+var crafts = [];
 
 
-const upload = multer({dest: __dirname + "/public/images"});
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, "./public/images/");
+    },
+    filename: (req, file, cb) => {
+      cb(null, file.originalname);
+    },
+  });
+  
+  const upload = multer({ storage: storage });
 
 app.get('/', (req, res)=>{
     res.sendFile(__dirname + "/index.html");
@@ -14,7 +29,6 @@ app.get('/', (req, res)=>{
 
 
 app.get('/api/crafts', (req, res)=>{
-    const crafts = [];
     crafts[0] =  {
         "_id": "0",
         "name": "Beaded JellyFish",
@@ -300,44 +314,45 @@ app.get('/api/crafts', (req, res)=>{
             "Glitter"
         ]
     };
-    res.json(crafts);
-})
-
-app.get("/api/crafts", (req, res)=> {
     res.send(crafts);
 })
 
+
 app.post("/api/crafts", upload.single("image"), (req, res)=> {
+    console.log("Posting");
+    console.log(req.file.filename);
     const result = validateCraft(req.body);
+    console.log("is Validated");
 
     if(result.error) {
+        console.log("result error");
         res.status(400).send(result.error.details[0].message);
         return;
     }
-
+    console.log("Getting craft info");
     const craft = {
-        _id: crafts.length + 1,
+        _id: crafts.length,
         name: req.body.name,
-        image: req.body.image,
+        image: req.file.filename,
         description: req.body.description,
         supplies: req.body.supplies.split(","),
     }
+    console.log("Got craft info");
 
-    if (req.body.crafts) {
-        craft.crafts = req.body.split(",");
-    }
-
+    console.log("pushing and sending");
     crafts.push(craft);
-    res.send(craft);
+    res.send(crafts);
+    console.log("pushing and sending completed");
+    console.log({...crafts})
 })
 
 function validateCraft (craft) {
+    console.log("begin validation");
     const schema = Joi.object({
         _id: Joi.allow(""),
         name: Joi.string().min(3).required(),
-        image: Joi.string().min(3).required(),
-        decription: Joi.string().min(3).required(),
-        supplies: Joi.allow()
+        description: Joi.string().min(3).required(),
+        supplies: Joi.allow("")
 
     });
 

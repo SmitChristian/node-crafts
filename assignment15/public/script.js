@@ -1,10 +1,41 @@
+async function getCrafts() {
+    try {
+        return (await fetch("api/crafts/")).json();
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+function clearPage() {
+    const col1 = document.getElementById("col-1");
+    const col2 = document.getElementById("col-2");
+    const col3 = document.getElementById("col-3");
+    const col4 = document.getElementById("col-4");
+    col1.innerHTML = "";
+    col2.innerHTML = "";
+    col3.innerHTML = "";
+    col4.innerHTML = "";
+    
+}
+
+function changeModalImage() {
+    console.log("Changing Modal Image");
+    const mImage = document.getElementById("modal-image");
+    const fImage = document.getElementById("file_picker").files[0];
+    
+    var reader = new FileReader();
+    reader.onload = function() {
+        mImage.src = this.result;
+    }
+    reader.readAsDataURL(fImage);
+}
+
+
 async function showCrafts() {
-    let response = await fetch("http://localhost:3000/api/crafts", {
-        mode: "no-cors"
-    });
-    let craftJSON = await response.json();
+    let craftJSON = await getCrafts();
     let mainContent = document.getElementById("content");
     let iteration = 1;
+    clearPage();
 
     craftJSON.forEach((craft) => {
 
@@ -99,6 +130,7 @@ function resetForm () {
     changeModalForm.reset();
     changeModalForm._id = "-1";
     document.getElementById("supply-text").innerHTML = "";
+    document.getElementById("modal-image").src = "images/200x300.webp";
 }
 
 async function addCraft (e) {
@@ -108,30 +140,25 @@ async function addCraft (e) {
     const formData = new FormData();
     formData.append("_id", form._id.value);
     formData.append("name", form.name.value);
-    formData.append("image", form.file_picker.value);
+    formData.append("image", form.file_picker.files[0]);
     formData.append("description", form.description.value);
     formData.append("supplies", getSupplyList());
 
-    formData.forEach((form) => {
-        console.log("something");
-    })
-
     let response;
-
-    if(form._id.value = -1) {
+    if(form._id.value == -1) {
         formData.delete("_id");
 
         response = await fetch("/api/crafts", {
             method: "POST",
-            body: formData,
-        })
+            body: formData
+        });
     }
 
     if(response.status != 200) {
         console.log("Error contacting server");
         return;
     }
-
+    await response.json();
     closeChangeModal();
     resetForm();
     showCrafts();
