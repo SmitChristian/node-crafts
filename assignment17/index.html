@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+        <script src="script.js"></script>
+
+        <div class="row">
+            <h1>Buy and Sell Crafts</h1>
+            <h1 id="add-craft" style="cursor:pointer" onclick="openChangeModal()">&#10010;</h1>
+        </div>
+    </head>
+    <body>
+        <main id="content">
+            <div id="craft-list" class="row">
+                <div id="col-1" class="column"></div>
+                <div id="col-2" class="column"></div>
+                <div id="col-3" class="column"></div>
+                <div id="col-4" class="column"></div>
+            </div>
+
+            <div id="del-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeDelModal()">&times;</span>
+                    <h1>Are you sure you want to delete this?</h1>
+                    <button id="yes-del-button" onclick="delCraft()">Yes</button>
+                    <button id="no-del-button" onclick="closeDelModal()">No</button>
+                </div>
+            </div>
+            
+            <div id="change-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeChangeModal()">&times;</span>
+                    <form id="add-content" class="row" method="post">
+                        <input type="hidden" name="_id" value="-1">
+                        <section id="add_image" class="column">
+                            <img id="modal-image">
+                            <input type="file" id="file_picker" onchange="changeModalImage()">
+                        </section>
+                        <section id="add_extras" class="column" style="max-width: 100%;">
+                            <h3 id="add-title">Add a Craft!</h3>
+                            <div class="inputter">
+                                <label for="name" class="labels">Name:</label>
+                                <input type="text" id="name" required>
+                            </div>
+                            <div class="inputter">
+                                <label for="description" class="labels">Description:</label>
+                                <textarea id="description" required></textarea>
+                            </div>
+                            <div class="inputter row">
+                                <label for="supply-text" class="labels">Supplies:</label>
+                                <div id="supply-text" class="column">
+                                </div>
+                                <label for="add_button" class="blue_label">Add Supply</label>
+                                <input type="button" id="add_button" style="visibility: hidden;">
+                            </div>
+                            <div id="save-cancel" class="inputter row">
+                                <div>
+                                    <label for="cancel-button" class="labels blue_label">Cancel</label>
+                                    <input type="button" id="cancel-button" style="visibility: hidden;">
+                                </div>
+                                <div>
+                                    <label for="save-button" class="labels blue_label">Save</label>
+                                    <button type="submit" id="save-button" style="visibility: hidden;">
+                                </div>
+                            </div>
+                        </section>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
